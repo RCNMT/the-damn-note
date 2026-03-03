@@ -146,4 +146,21 @@ export default defineComponent({
   outline: none;
   background: #444;
 }
+
+/* responsive adjustments */
+@media (max-width: 640px) {
+  .numeric-input {
+    width: 100%;
+  }
+
+  .numeric-field {
+    width: 50px;
+  }
+
+  .stepper-btn {
+    width: 32px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
 </style>

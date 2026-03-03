@@ -328,6 +328,8 @@ const categories = {
     min-width: 100vw;
     min-height: 100vh;
     padding: 16px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .fretbroad {
@@ -411,7 +413,8 @@ const categories = {
     padding: 20px;
     border-radius: 12px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 32px;
     margin-bottom: 30px;
     width: fit-content;
@@ -653,5 +656,64 @@ input[type="color"]::-webkit-color-swatch {
 
 input[type="color"]:focus {
     border: 2px solid #fff;
+}
+
+/* responsive tweaks for small screens */
+@media (max-width: 640px) {
+    .content {
+        padding: 8px;
+    }
+
+    .fretbroad {
+        margin-top: 16px;
+        margin-bottom: 32px;
+        /* allow horizontal scrolling on narrow viewports */
+        overflow-x: auto;
+    }
+
+    /* ensure the fretboard is as wide as its contents so scrolling works */
+    .strings {
+        min-width: max-content;
+    }
+
+    .fret {
+        height: 40px;
+    }
+
+    .note {
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
+    }
+
+    .fretnumber {
+        top: -24px;
+        font-size: 0.875rem;
+    }
+
+    .fretmarker {
+        top: 48px;
+    }
+
+    .color-input {
+        width: 40px;
+        height: 36px;
+    }
+
+    .controls {
+        padding: 16px;
+        gap: 24px;
+        width: 100%;
+    }
+
+    .infomation {
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    .infomation .group {
+        margin-left: 0;
+        margin-top: 8px;
+    }
 }
 </style>
