@@ -1,5 +1,10 @@
-# Vue 3 + Vite
+# The Damn Note
+A static web for guitar scales developing with Vue 3 in Vite.
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Page: https://rcnmt.github.io/the-damn-note/
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Screenshots
+![alt text](/assets/image.png)
+
+## License
+This project is under [MIT](https://github.com/RCNMT/the-damn-note/blob/main/LICENSE) License.
