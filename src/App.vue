@@ -100,8 +100,6 @@ const degree_map = computed(() => {
     }
     map[notes.value[root_idx]] = formulaItems[0] || '';
 
-    console.log(current_scale_data.value);
-    
     return map;
 });
 
@@ -238,16 +236,19 @@ const categories = {
             </div>
             <div class="group">
                 <div class="group1">
-                    <span class="label">Note:</span><span v-for="note in scale_note_set" :key="note">{{ note.trim()
-                        }}</span>
+                    <span class="label">Note:</span><span v-for="note in scale_note_set">
+                        {{ note.trim() }}
+                    </span>
                 </div>
                 <div class="group1">
-                    <span class="label">Formula:</span><span v-for="form in current_scale_data?.formula.split(' ')"
-                        :key="form">{{ form.trim() }}</span>
+                    <span class="label">Formula:</span><span v-for="form in current_scale_data?.formula.split(' ')">
+                        {{ form.trim() }}
+                    </span>
                 </div>
                 <div class="group1">
-                    <span class="label">Intervals:</span><span v-for="form in current_scale_data?.intervals"
-                        :key="form">{{ form }}</span>
+                    <span class="label">Intervals:</span><span v-for="form in current_scale_data?.intervals">
+                        {{ form }}
+                    </span>
                 </div>
             </div>
             <div class="group scale-type px-4 py-2 rounded-lg font-medium border flex items-center text-center uppercase"
