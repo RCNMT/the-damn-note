@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import Numeric from './components/Numeric.vue';
 
 const strings = ['E', 'B', 'G', 'D', 'A', 'E'];
@@ -137,6 +137,32 @@ function flat_to_sharp(note) {
 
     return notes_sharp[index];
 }
+
+function save_config() {
+    localStorage.setItem('root_note', current_note.value);
+    localStorage.setItem('category_key', selected_category_key.value);
+    localStorage.setItem('type_key', selected_type_key.value);
+    localStorage.setItem('use_degree', JSON.stringify(use_degree.value));
+    localStorage.setItem('use_flat', JSON.stringify(use_flat.value));
+    localStorage.setItem('fret_start', JSON.stringify(fret_start.value));
+    localStorage.setItem('fret_end', JSON.stringify(fret_end.value));
+    localStorage.setItem('accent_color', accent_color.value);
+}
+
+function load_config() {
+    current_note.value = localStorage.getItem('root_note') || current_note.value;
+    selected_category_key.value = localStorage.getItem('category_key') || selected_category_key.value;
+    selected_type_key.value = localStorage.getItem('type_key') || selected_type_key.value;
+    use_degree.value = JSON.parse(localStorage.getItem('use_degree') || use_degree.value);
+    use_flat.value = JSON.parse(localStorage.getItem('use_flat') || use_flat.value);
+    fret_start.value = JSON.parse(localStorage.getItem('fret_start') || fret_start.value);
+    fret_end.value = JSON.parse(localStorage.getItem('fret_end') || fret_end.value);
+    accent_color.value = localStorage.getItem('accent_color') || accent_color.value;
+}
+
+onMounted(() => {
+    load_config();
+});
 
 const categories = {
     major: {
@@ -314,16 +340,40 @@ const categories = {
             <div class="control-group">
                 <label>Accent Color</label>
                 <div class="color-presets">
-                    <button v-for="color in presetColors" :key="color" :style="{ background: color }"
-                        :class="{ active: accent_color === color }" @click="accent_color = color"
-                        class="preset-color" />
                     <input type="color" v-model="accent_color" class="color-input" />
                 </div>
+                <label>Save Setting</label>
+                <button class="btn-save" @click="save_config">
+                    Save
+                </button>
             </div>
         </div>
     </div>
 </template>
 <style scoped>
+.btn-save {
+    height: 44px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    margin-top: 1px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    background: #333;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-save:hover {
+    background: #444;
+    border-color: #777;
+}
+
 .content {
     background: #1a1a1a;
     min-width: 100vw;
@@ -611,6 +661,7 @@ const categories = {
     gap: 8px;
     align-items: center;
     flex-wrap: wrap;
+    height: 44px;
 }
 
 .preset-color {
